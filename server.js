@@ -17,10 +17,9 @@ app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // Load Routes
-require("./router/userRouter.js")(app)
-require("./router/carRouter.js")(app)
-require("./router/blogRouter.js")(app)
-require("./router/cityRouter.js")(app)
+
+require("./router/Router.js")(app)
+
 
 
 app.listen(port, () => {
