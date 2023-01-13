@@ -3,7 +3,7 @@ module.exports =app=>{
     const Controller = require("../controllers/Controller.js")
     
 router.post("/addContact",Controller.contactAdd)
-router.post("/BlogDelete",Controller.homeAdd)
+router.post("/addHome",Controller.homeAdd)
 
   
 
