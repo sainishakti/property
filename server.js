@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // Load Routes
 
-require("./router/Router.js")(app)
+require("./router/userRouter.js")(app)
 
 
 

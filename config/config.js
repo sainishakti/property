@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const url =process.env.STAGING_URL
-mongoose.connect("mongodb+srv://root:root@cluster0.jlphler.mongodb.net/developement",{
+mongoose.connect("mongodb+srv://root:root@cluster0.hmprbiu.mongodb.net/property",{
     useNewUrlParser: true,
     useUnifiedTopology: true
 
