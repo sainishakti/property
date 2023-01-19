@@ -26,7 +26,7 @@ module.exports.createSell = async (req, res) => {
       //list...........................................................................
       module.exports.getSellList = async (req, res) => {
         try{
-          const data = await carModel.find()
+          const data = await sellModel.find()
         if(data){
         res.send({ "status": "201","success":true, "message": "get Sell List  Successfully",data })
         }else{
@@ -41,7 +41,7 @@ module.exports.createSell = async (req, res) => {
     module.exports.sellDelete = async (req, res) => {
         const _id = req.body._id;
         try{
-          const data = await carModel.findOneAndDelete({_id:_id})
+          const data = await sellModel.findOneAndDelete({_id:_id})
         if(data){
         res.send({ "status": "201","success":true, "message": "Deleted Sell Successfully",data })
         }else{
