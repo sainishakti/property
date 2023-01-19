@@ -16,14 +16,14 @@ module.exports.userRegister = async (req, res) => {
           try {
             const salt = await bcrypt.genSalt(10)
             const hashPassword = await bcrypt.hash(password, salt)
-            const doc = new UserModel({
+            const data = new UserModel({
               email: email,
               password: hashPassword,
               mobile : mobile,
               name:name,
             })
-            await doc.save()
-            res.status(201).send({ "status":200, "success":true, "message": "Registration Successfully" })
+            await data.save()
+            res.status(201).send({ "status":200, "success":true, "message": "Registration Successfully",data })
           } catch (error) {
             console.log(error)
             res.status(401).send({ "status": 401,"success":false, "message": "Unable to Register" })
