@@ -3,8 +3,21 @@ const  sellModel =require("../models/sellHomeModel.js")
 module.exports.createSell = async (req, res) => {
     const { rent,addPrice, location, pgLiving,coWorking,allResidential,BudgetRange,residentialProject} = req.body;
           try {
-        
-            const data = new sellModel({
+            if(req.files == undefined){
+            var data = new sellModel({
+                rent:rent,
+                addPrice: addPrice,
+                location: location,
+                pgLiving : pgLiving,
+                coWorking:coWorking,
+                allResidential:allResidential,
+                BudgetRange:BudgetRange,
+                residentialProject:residentialProject
+            })
+            await data.save()
+            res.status(201).send({ "status":200, "success":true, "message": "Create Sell Successfully",data })
+            }else{
+              var data = new sellModel({
                 rent:rent,
                 addPrice: addPrice,
                 location: location,
@@ -17,6 +30,8 @@ module.exports.createSell = async (req, res) => {
             })
             await data.save()
             res.status(201).send({ "status":200, "success":true, "message": "Create Sell Successfully",data })
+
+            }
           } catch (error) {
             console.log(error)
             res.status(401).send({ "status": 401,"success":false, "message": "Unable to Create" })
