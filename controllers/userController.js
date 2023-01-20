@@ -1,6 +1,7 @@
 const  UserModel =require("../models/userModel.js")
 const  bcrypt =require("bcrypt")
 const  jwt =require("jsonwebtoken")
+const userModel = require("../models/userModel.js")
 
 
 //signup..........................................................................
@@ -62,4 +63,18 @@ module.exports.userRegister = async (req, res) => {
       console.log(error)
      res.status(401).send({"status": "401","success":false, "message": "Unable to Login" })
     }
+  }
+  //listuser..........................................................................................
+  module.exports.getUserList = async (req, res) => {
+    try{
+      const data = await UserModel.find()
+    if(data){
+    res.send({ "status": "201","success":true, "message": "get User List  Successfully",data })
+    }else{
+      res.status(401).send({"status": "401","success":false, "message": "Unable To Get" })
+    }
+    }catch(error){
+      res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })
+      console.log("error",error);
+}
   }
