@@ -7,7 +7,7 @@ const sellSchema = new mongoose.Schema({
   location: { type: String},
   pgLiving: { type: String},
   coWorking: { type: String},
-  varient: { type: String},
+  image: { type: String},
   allResidential: { type: String},
   BudgetRange: { type: String},
   residentialProject: { type: String},
