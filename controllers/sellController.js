@@ -3,7 +3,7 @@ const  sellModel =require("../models/sellHomeModel.js")
 module.exports.createSell = async (req, res) => {
     const { rent,addPrice, location, pgLiving,coWorking,allResidential,BudgetRange,residentialProject} = req.body;
           try {
-            if(req.files == undefined){
+            if(req.file == undefined){
             var data = new sellModel({
                 rent:rent,
                 addPrice: addPrice,
@@ -23,7 +23,7 @@ module.exports.createSell = async (req, res) => {
                 location: location,
                 pgLiving : pgLiving,
                 coWorking:coWorking,
-                image:"https://property-ukgv.onrender.com/uploads/"+req?.file?.filename,
+                image:"https://property-ukgv.onrender.com/uploads/"+req.file.filename,
                 allResidential:allResidential,
                 BudgetRange:BudgetRange,
                 residentialProject:residentialProject
