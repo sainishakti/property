@@ -67,5 +67,20 @@ module.exports.createSell = async (req, res) => {
           console.log("error",error);
     }
       }
+//searchcityAccordig.................................
+module.exports.locationSell = async (req, res) => {
+  const location = req.body.location
+  try{
+    const data = await sellModel.find({location:location})
+  if(data){
+  res.send({ "status": "201","success":true, "message": "get Sell Data  Successfully",data })
+  }else{
+    res.status(401).send({"status": "401","success":false, "message": "Unable To Get" })
+  }
+  }catch(error){
+    res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })
+    console.log("error",error);
+}
+}
     
   

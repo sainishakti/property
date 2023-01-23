@@ -15,6 +15,7 @@ module.exports =app=>{
 router.post("/createSell",upload.single('file'),sellController.createSell)
 router.get("/ListSell",sellController.getSellList)
 router.post("/deleteSell",sellController.sellDelete)
+router.post("/locationSell",sellController.locationSell)
 
 
   
