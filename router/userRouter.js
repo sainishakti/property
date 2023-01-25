@@ -5,6 +5,7 @@ module.exports =app=>{
 router.post("/signup",Controller.userRegister)
 router.post("/login",Controller.userLogin)
 router.get("/userList",Controller.getUserList)
+router.post("/userDelete",Controller.userDelete)
 
 
   

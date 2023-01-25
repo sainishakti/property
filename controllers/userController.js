@@ -78,3 +78,18 @@ module.exports.userRegister = async (req, res) => {
       console.log("error",error);
 }
   }
+  //deleteUser.............................................................
+  module.exports.userDelete = async (req, res) => {
+    const _id = req.body._id;
+    try{
+      const data = await UserModel.findOneAndDelete({_id:_id})
+    if(data){
+    res.send({ "status": "201","success":true, "message": "Deleted User Successfully",data })
+    }else{
+      res.status(401).send({"status": "401","success":false, "message": "Unable To Delete" })
+    }
+    }catch(error){
+      res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })
+      console.log("error",error);
+}
+  }
