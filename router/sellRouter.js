@@ -19,6 +19,7 @@ router.post("/locationSell",sellController.locationSell)
 router.post("/addAddress",sellController.addAddress)
 router.get("/getAddress",sellController.getAddress)
 router.post("/deleteAddress",sellController.addressDelete)
+router.post("/uploadImage",upload.single('file'),sellController.uploadImage)
 
 
   

@@ -1,5 +1,6 @@
 const  sellModel =require("../models/sellHomeModel.js")
 const  addressModel =require("../models/addressModel.js")
+const imageModel =require("../models/imageModel.js")
 //create...................................................................................
 module.exports.createSell = async (req, res) => {
     const { rent,addPrice, location, pgLiving,coWorking,allResidential,BudgetRange,residentialProject} = req.body;
@@ -132,5 +133,21 @@ module.exports.addressDelete = async (req, res) => {
     console.log("error",error);
 }
 }
+//uploadImage........................................................
+module.exports.uploadImage = async (req, res) => {
+        try {
+          const data = new imageModel({
+            image:"https://property-ukgv.onrender.com/uploads/"+req.file.filename,
+           
+          })
+          await data.save()
+          res.status(201).send({ "status":200, "success":true, "message": "Upload Image Successfully",data })
+        } catch (error) {
+          console.log(error)
+          res.status(401).send({ "status": 401,"success":false, "message": "Unable to Upload" })
+        }
+      
+    } 
+  
     
   
