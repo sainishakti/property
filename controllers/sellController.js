@@ -1,4 +1,5 @@
 const  sellModel =require("../models/sellHomeModel.js")
+const  addressModel =require("../models/addressModel.js")
 //create...................................................................................
 module.exports.createSell = async (req, res) => {
     const { rent,addPrice, location, pgLiving,coWorking,allResidential,BudgetRange,residentialProject} = req.body;
@@ -76,6 +77,55 @@ module.exports.locationSell = async (req, res) => {
   res.send({ "status": "201","success":true, "message": "get Sell Data  Successfully",data })
   }else{
     res.status(401).send({"status": "401","success":false, "message": "Unable To Get" })
+  }
+  }catch(error){
+    res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })
+    console.log("error",error);
+}
+}
+//addAddress.......................................................................................
+module.exports.addAddress = async (req, res) => {
+  const { cityName,apartmentSociety, locality, subLocality,houseNumber} = req.body;
+        try {
+          const data = new addressModel({
+            cityName: cityName,
+            apartmentSociety: apartmentSociety,
+            locality : locality,
+            subLocality:subLocality,
+            houseNumber:houseNumber
+          })
+          await data.save()
+          res.status(201).send({ "status":200, "success":true, "message": "Address Add Successfully",data })
+        } catch (error) {
+          console.log(error)
+          res.status(401).send({ "status": 401,"success":false, "message": "Unable to Add" })
+        }
+      
+    } 
+  
+ //listAddress..........................................................................................
+ module.exports.getAddress = async (req, res) => {
+  try{
+    const data = await addressModel.find()
+  if(data){
+  res.send({ "status": "201","success":true, "message": "get Address List  Successfully",data })
+  }else{
+    res.status(401).send({"status": "401","success":false, "message": "Unable To Get" })
+  }
+  }catch(error){
+    res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })
+    console.log("error",error);
+}
+}
+//deleteAddress..........................................................
+module.exports.addressDelete = async (req, res) => {
+  const _id = req.body._id;
+  try{
+    const data = await addressModel.findOneAndDelete({_id:_id})
+  if(data){
+  res.send({ "status": "201","success":true, "message": "Deleted address Successfully",data })
+  }else{
+    res.status(401).send({"status": "401","success":false, "message": "Unable To Delete" })
   }
   }catch(error){
     res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })
