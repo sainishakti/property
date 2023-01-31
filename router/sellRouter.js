@@ -20,7 +20,9 @@ router.post("/addAddress",sellController.addAddress)
 router.get("/getAddress",sellController.getAddress)
 router.post("/deleteAddress",sellController.addressDelete)
 router.post("/uploadImage",upload.single('file'),sellController.uploadImage)
-
+router.post("/addDetails",sellController.addDetails)
+router.get("/getDetails",sellController.addDetails)
+router.post("/deleteDetails",sellController.detailsDelete)
 
   
 
