@@ -23,6 +23,9 @@ router.post("/uploadImage",upload.single('file'),sellController.uploadImage)
 router.post("/addDetails",sellController.addDetails)
 router.get("/getDetails",sellController.addDetails)
 router.post("/deleteDetails",sellController.detailsDelete)
+router.post("/basicDetails",sellController.addBasicDetails)
+router.get("/getBasicDetails",sellController.getBasicDetails)
+router.post("/deleteBasicDetails",sellController.basicDetailsDelete)
 
   
 
