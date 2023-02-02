@@ -4,6 +4,9 @@ module.exports =app=>{
    
     
 router.post("/login",Controller.adminLogin)
+router.post("/sendOtp",Controller.sendOtpEmail)
+router.post("/verifyOtp",Controller.verifyOtp)
+router.post("/setPassword",Controller.userPasswordReset)
 
 
 

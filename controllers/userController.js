@@ -1,7 +1,6 @@
 const  UserModel =require("../models/userModel.js")
 const  bcrypt =require("bcrypt")
 const  jwt =require("jsonwebtoken")
-const userModel = require("../models/userModel.js")
 const nodemailer = require("nodemailer")
 var smtpTransport = require('nodemailer-smtp-transport');
 

@@ -12,6 +12,7 @@ router.get("/userList",Controller.getUserList)
 router.post("/userDelete",Controller.userDelete)
 
 
+
   
 
     app.use('/',router)
