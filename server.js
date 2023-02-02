@@ -20,6 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 require("./router/userRouter.js")(app)
 require("./router/sellRouter.js")(app)
+require("./router/adminRouter")(app)
 
 
 
