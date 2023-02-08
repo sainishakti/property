@@ -27,6 +27,8 @@ router.post("/basicDetails",sellController.addBasicDetails)
 router.get("/getBasicDetails",sellController.getBasicDetails)
 router.post("/deleteBasicDetails",sellController.basicDetailsDelete)
 router.post("/createHousePgSell",upload.array('file',8),sellController.createPGHouseSell)
+router.get("/getListHouse",sellController.getPgSHouse)
+router.post("/deletePgHouse",sellController.pgHouseDelete)
 
   
 

@@ -3,6 +3,7 @@ const  addressModel =require("../models/addressModel.js")
 const imageModel =require("../models/imageModel.js")
 const detailsModel =require("../models/detailsModel.js")
 const basicDetailsModel =require("../models/basicDetailsModel.js")
+const pgHouseModel =require("../models/pgHouseModel.js")
 //create...................................................................................
 module.exports.createSell = async (req, res) => {
     const {userId, phoneNumber,city,type,bedroomd,state,price,descriptions,floorNumber,facing,bathRooms,carParking,projectName,addTitle, furnishing,FurnishingConstruction,listedBy,totalFloors} = req.body;
@@ -319,7 +320,7 @@ module.exports.createPGHouseSell = async (req, res) => {
    console.log("finalData",images);
    const imgs = {...images}
    console.log("img",imgs);
-            var data = new sellModel({
+            var data = new pgHouseModel({
               SubType: SubType,
               userId:userId,
               bedroomd: bedroomd,
@@ -352,4 +353,32 @@ module.exports.createPGHouseSell = async (req, res) => {
       
     } 
     
-  
+  //housepgList........................................
+  module.exports.getPgSHouse = async (req, res) => {
+    try{
+      const data = await pgHouseModel.find()
+    if(data){
+    res.send({ "status": "201","success":true, "message": "get pgHouse List  Successfully",data })
+    }else{
+      res.status(401).send({"status": "401","success":false, "message": "Unable To Get" })
+    }
+    }catch(error){
+      res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })
+      console.log("error",error);
+  }
+  }
+  //deleteHousePg...........................................................
+  module.exports.pgHouseDelete = async (req, res) => {
+    const _id = req.body._id;
+    try{
+      const data = await pgHouseModel.findOneAndDelete({_id:_id})
+    if(data){
+    res.send({ "status": "201","success":true, "message": "Deleted PgHouse Successfully",data })
+    }else{
+      res.status(401).send({"status": "401","success":false, "message": "Unable To Delete" })
+    }
+    }catch(error){
+      res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })
+      console.log("error",error);
+  }
+  }
