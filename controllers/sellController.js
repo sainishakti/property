@@ -281,6 +281,75 @@ module.exports.basicDetailsDelete = async (req, res) => {
     console.log("error",error);
 }
 }
-  
+//pgHouse..................................................................
+module.exports.createPGHouseSell = async (req, res) => {
+  const {userId, phoneNumber,city,SubType,bedroomd,state,price,descriptions,floorNumber,facing,bathRooms,carParking,projectName,addTitle, furnishing,mealsIncluded,listedBy,totalFloors} = req.body;
+        try {
+          if(req.files== undefined){
+          var data = new sellModel({
+            userId:userId,
+            SubType: SubType,
+            bedroomd: bedroomd,
+            bathRooms: bathRooms,
+            furnishing: furnishing,
+            mealsIncluded:mealsIncluded,
+            listedBy: listedBy,
+            totalFloors:totalFloors,
+            floorNumber: floorNumber,
+            facing: facing,
+            carParking: carParking,
+            projectName:projectName ,
+            addTitle:addTitle,
+            descriptions: descriptions,
+            price: price,
+            state:state,
+            city: city,
+            phoneNumber: phoneNumber,
+          })
+          await data.save()
+          res.status(201).send({ "status":200, "success":true, "message": "Create Sell Successfully",data })
+          }else{
+            var images = []
+            let photos = req.files
+            console.log("file",photos);
+            for (const img of photos) {
+            console.log("img",img);
+           images.push("https://property-ukgv.onrender.com/uploads/"+img.filename)
+   }
+   console.log("finalData",images);
+   const imgs = {...images}
+   console.log("img",imgs);
+            var data = new sellModel({
+              SubType: SubType,
+              userId:userId,
+              bedroomd: bedroomd,
+              bathRooms: bathRooms,
+              furnishing: furnishing,
+              mealsIncluded:mealsIncluded,
+              listedBy: listedBy,
+              totalFloors:totalFloors,
+              floorNumber: floorNumber,
+              facing: facing,
+              carParking: carParking,
+              projectName:projectName ,
+              addTitle:addTitle,
+              descriptions: descriptions,
+              price: price,
+              state:state,
+              city: city,
+              phoneNumber: phoneNumber,
+              images:imgs
+              
+          })
+          await data.save()
+          res.status(201).send({ "status":200, "success":true, "message": "Create PG House Sell Successfully",data })
+
+          }
+        } catch (error) {
+          console.log(error)
+          res.status(401).send({ "status": 401,"success":false, "message": "Unable to Create" })
+        }
+      
+    } 
     
   
