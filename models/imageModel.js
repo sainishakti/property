@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 // Defining Schema
 const imageSchema = new mongoose.Schema({
-  image: { type: String},
+  image: { type: Array},
  
   },
 {
