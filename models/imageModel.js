@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 // Defining Schema
 const imageSchema = new mongoose.Schema({
   image: { type: Array},
+  userId: { type: String},
+ 
  
   },
 {

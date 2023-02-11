@@ -5,8 +5,8 @@ const aboutSchema = new mongoose.Schema({
   lookingTo: { type: String},
   area: { type: String},
   property: { type: String},
-  phone: { type: String},
- 
+  userId: { type: String},
+  
   
   },
 {

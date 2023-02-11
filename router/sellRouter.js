@@ -12,7 +12,7 @@ module.exports =app=>{
     })
     var upload = multer({ storage: storage })
     
-router.post("/createSell",upload.array('file',8),sellController.createSell)
+//router.post("/createSell",upload.array('file',8),sellController.createSell)
 router.get("/ListSell",sellController.getSellList)
 router.post("/deleteSell",sellController.sellDelete)
 router.post("/locationSell",sellController.locationSell)
@@ -26,9 +26,10 @@ router.post("/deleteDetails",sellController.detailsDelete)
 router.post("/basicDetails",sellController.addBasicDetails)
 router.get("/getBasicDetails",sellController.getBasicDetails)
 router.post("/deleteBasicDetails",sellController.basicDetailsDelete)
-// router.post("/createHousePgSell",upload.array('file',8),sellController.createPGHouseSell)
-// router.get("/getListHouse",sellController.getPgSHouse)
-// router.post("/deletePgHouse",sellController.pgHouseDelete)
+router.post("/AddLocations",sellController.addLocation)
+router.post("/AddProfileProerty",sellController.addProfileProperty)
+router.post("/AddPrice",sellController.priceAdd)
+
 
   
 
