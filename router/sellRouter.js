@@ -29,9 +29,10 @@ router.post("/deleteBasicDetails",sellController.basicDetailsDelete)
 router.post("/AddLocations",sellController.addLocation)
 router.post("/AddProfileProerty",sellController.addProfileProperty)
 router.post("/AddPrice",sellController.priceAdd)
+router.get("/getImage",sellController.getImage)
+router.get("/getPrice",sellController.getPrice)
+router.get("/getProperty",sellController.getProfileProperty)
+router.get("/getlocation",sellController.getLocation)
 
-
-  
-
-    app.use('/',router)
+app.use('/',router)
 }

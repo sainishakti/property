@@ -354,8 +354,6 @@ module.exports.priceAdd = async (req, res) => {
       exppectedPrice: exppectedPrice,
       pricePerAcres: pricePerAcres,
       userId:userId,
-    
-     
     })
     await data.save()
     res.status(201).send({ "status":200, "success":true, "message": "Add price Successfully",data })
@@ -365,4 +363,61 @@ module.exports.priceAdd = async (req, res) => {
   }
 
 } 
+//getUpload...................................................
+module.exports.getImage = async (req, res) => {
+  try{
+    const data = await imageModel.find()
+  if(data){
+  res.send({ "status": "201","success":true, "message": "get  imageList  Successfully",data })
+  }else{
+    res.status(401).send({"status": "401","success":false, "message": "Unable To Get" })
+  }
+  }catch(error){
+    res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })
+    console.log("error",error);
+}
+}
+//getprice.........................................
 
+module.exports.getPrice = async (req, res) => {
+  try{
+    const data = await priceModel.find()
+  if(data){
+  res.send({ "status": "201","success":true, "message": "get  priceList Successfully",data })
+  }else{
+    res.status(401).send({"status": "401","success":false, "message": "Unable To Get" })
+  }
+  }catch(error){
+    res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })
+    console.log("error",error);
+}
+}
+
+//getProfileProperty..........................................
+ module.exports.getProfileProperty = async (req, res) => {
+  try{
+    const data = await propertyProfile.find()
+  if(data){
+  res.send({ "status": "201","success":true, "message": "get  priceList  Successfully",data })
+  }else{
+    res.status(401).send({"status": "401","success":false, "message": "Unable To Get" })
+  }
+  }catch(error){
+    res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })
+    console.log("error",error);
+}
+}
+//getLocation.................................................
+module.exports.getLocation = async (req, res) => {
+  try{
+    const data = await locationModel.find()
+  if(data){
+  res.send({ "status": "201","success":true, "message": "get  LocationList Successfully",data })
+  }else{
+    res.status(401).send({"status": "401","success":false, "message": "Unable To Get" })
+  }
+  }catch(error){
+    res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })
+    console.log("error",error);
+}
+}
