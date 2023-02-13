@@ -15,7 +15,7 @@ const priceSchema = new mongoose.Schema({
 )
 
 // Model
-module.exports=locationModel = mongoose.model("price", priceSchema)
+module.exports=priceModel = mongoose.model("price", priceSchema)
 
 
 
