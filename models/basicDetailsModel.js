@@ -6,6 +6,7 @@ const aboutSchema = new mongoose.Schema({
   area: { type: String},
   property: { type: String},
   userId: { type: String},
+  phoneNumber: { type: String},
   
   
   },

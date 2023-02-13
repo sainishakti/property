@@ -248,13 +248,14 @@ module.exports.detailsDelete = async (req, res) => {
 //basicDetailsAdd..........................................................
 
 module.exports.addBasicDetails = async (req, res) => {
-  const { lookingTo,area, property, userId}= req.body;
+  const { lookingTo,area, property, userId,phoneNumber}= req.body;
         try {
           const data = new basicDetailsModel({
             lookingTo: lookingTo,
             area: area,
             property : property,
             userId:userId,
+            phoneNumber:phoneNumber
     
           })
           await data.save()
@@ -415,6 +416,69 @@ module.exports.getLocation = async (req, res) => {
   res.send({ "status": "201","success":true, "message": "get  LocationList Successfully",data })
   }else{
     res.status(401).send({"status": "401","success":false, "message": "Unable To Get" })
+  }
+  }catch(error){
+    res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })
+    console.log("error",error);
+}
+}
+//deletePrice................................
+module.exports.priceDelete = async (req, res) => {
+  const _id = req.body._id;
+  try{
+    const data = await priceModel.findOneAndDelete({_id:_id})
+  if(data){
+  res.send({ "status": "201","success":true, "message": "Deleted Price Successfully",data })
+  }else{
+    res.status(401).send({"status": "401","success":false, "message": "Unable To Delete" })
+  }
+  }catch(error){
+    res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })
+    console.log("error",error);
+}
+}
+//deletePhotos....................................
+module.exports.imageDelete = async (req, res) => {
+  const _id = req.body._id;
+  try{
+    const data = await imageModel.findOneAndDelete({_id:_id})
+  if(data){
+  res.send({ "status": "201","success":true, "message": "Deleted Image Successfully",data })
+  }else{
+    res.status(401).send({"status": "401","success":false, "message": "Unable To Delete" })
+  }
+  }catch(error){
+    res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })
+    console.log("error",error);
+}
+}
+
+//deleteLocation....................................
+module.exports.locationDelete = async (req, res) => {
+  const _id = req.body._id;
+  try{
+    const data = await locationModel.findOneAndDelete({_id:_id})
+  if(data){
+  res.send({ "status": "201","success":true, "message": "Deleted location Successfully",data })
+  }else{
+    res.status(401).send({"status": "401","success":false, "message": "Unable To Delete" })
+  }
+  }catch(error){
+    res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })
+    console.log("error",error);
+}
+}
+
+
+//deletePropertyProfile...........................................
+module.exports.propertyFileDelete = async (req, res) => {
+  const _id = req.body._id;
+  try{
+    const data = await propertyProfile.findOneAndDelete({_id:_id})
+  if(data){
+  res.send({ "status": "201","success":true, "message": "Deleted PropertyProfile Successfully",data })
+  }else{
+    res.status(401).send({"status": "401","success":false, "message": "Unable To Delete" })
   }
   }catch(error){
     res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })

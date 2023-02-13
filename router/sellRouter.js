@@ -33,6 +33,10 @@ router.get("/getImage",sellController.getImage)
 router.get("/getPrice",sellController.getPrice)
 router.get("/getProperty",sellController.getProfileProperty)
 router.get("/getlocation",sellController.getLocation)
+router.post("/priceDelete",sellController.priceDelete)
+router.post("/imageDelete",sellController.imageDelete)
+router.post("/locationDelete",sellController.locationDelete)
+router.post("/propertyProfileDelete",sellController.propertyFileDelete)
 
 app.use('/',router)
 }
