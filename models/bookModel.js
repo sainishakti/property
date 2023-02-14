@@ -6,6 +6,8 @@ const bookCarSchema = new mongoose.Schema({
   phoneNumber: { type: String},
   address: { type: String},
   city: { type: String},
+  userId: { type: String},
+  propertyId:{ type: String},
  
  
  },
