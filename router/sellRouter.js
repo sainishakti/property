@@ -33,6 +33,7 @@ router.post("/priceDelete",sellController.priceDelete)
 router.post("/imageDelete",sellController.imageDelete)
 router.post("/locationDelete",sellController.locationDelete)
 router.post("/propertyProfileDelete",sellController.propertyFileDelete)
+router.post("/BookProperty",sellController.BookProperty)
 
 app.use('/',router)
 }

@@ -4,6 +4,7 @@ const basicDetailsModel =require("../models/basicDetailsModel.js")
 const locationModel =require("../models/locationModel.js")
 const propertyProfile =require("../models/propertyProfileModel.js")
 const priceModel =require("../models/priceModel.js")
+const bookModel =require("../models/bookModel.js")
 
 //uploadImage........................................................
 module.exports.uploadImage = async (req, res) => {
@@ -269,3 +270,57 @@ module.exports.propertyFileDelete = async (req, res) => {
     console.log("error",error);
 }
 }
+//BookProperty.................................
+module.exports.BookProperty = async (req, res) => {
+  try {
+    const{phoneNumber,userId,name,address,city,propertyId}=req.body;
+    const data = new bookModel({
+      phoneNumber: phoneNumber,
+      name: name,
+      propertyId: propertyId,
+      userId:userId,
+      address:address,
+      city:city
+    })
+    await data.save()
+    res.status(201).send({ "status":200, "success":true, "message": "Book Property Successfully",data })
+  } catch (error) {
+    console.log(error)
+    res.status(401).send({ "status": 401,"success":false, "message": "Unable to Add" })
+  }
+
+} 
+
+
+
+//getAllProperty.......................................
+// module.exports.getAllProperty = async (req, res) => {
+//   try{
+    //const data = await Orders.aggregate([{ 
+    //   $lookup: {
+    //    from: 'User',
+    //    localField: 'User_ID',
+    //    foreignField: 'ID',
+    //    as: 'Customer'
+    //   },
+    //   { 
+    //    $unwind: '$Customer'
+    //   },
+    //   $lookup: {
+    //    from: 'Items',
+    //    localField: 'Item_ID',
+    //    foreignField: 'ID',
+    //    as: 'Item'
+    //   },
+    // }])
+    
+//   if(data){
+//   res.send({ "status": "201","success":true, "message": "get  LocationList Successfully",data })
+//   }else{
+//     res.status(401).send({"status": "401","success":false, "message": "Unable To Get" })
+//   }
+//   }catch(error){
+//     res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })
+//     console.log("error",error);
+// }
+// }
