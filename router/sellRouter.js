@@ -18,22 +18,8 @@ module.exports =app=>{
 
 
 
-router.post("/uploadImage",upload.array('file',8),sellController.uploadImage)
-router.post("/basicDetails",sellController.addBasicDetails)
-router.get("/getBasicDetails",sellController.getBasicDetails)
-router.post("/deleteBasicDetails",sellController.basicDetailsDelete)
-router.post("/AddLocations",sellController.addLocation)
-router.post("/AddProfileProerty",sellController.addProfileProperty)
-router.post("/AddPrice",sellController.priceAdd)
-router.get("/getImage",sellController.getImage)
-router.get("/getPrice",sellController.getPrice)
-router.get("/getProperty",sellController.getProfileProperty)
-router.get("/getlocation",sellController.getLocation)
-router.post("/priceDelete",sellController.priceDelete)
-router.post("/imageDelete",sellController.imageDelete)
-router.post("/locationDelete",sellController.locationDelete)
-router.post("/propertyProfileDelete",sellController.propertyFileDelete)
-router.post("/BookProperty",sellController.BookProperty)
+
+router.post("/AddPropertyDetails",upload.array('file',8),sellController.addBasicDetails)
 
 app.use('/',router)
 }

@@ -1,115 +1,24 @@
 
-const imageModel =require("../models/imageModel.js")
 const basicDetailsModel =require("../models/basicDetailsModel.js")
-const locationModel =require("../models/locationModel.js")
-const propertyProfile =require("../models/propertyProfileModel.js")
-const priceModel =require("../models/priceModel.js")
-const bookModel =require("../models/bookModel.js")
 
-//uploadImage........................................................
-module.exports.uploadImage = async (req, res) => {
-        try {
-                      var images = []
-                      let photos = req.files
-                      console.log("file",photos);
-                      for (const img of photos) {
-                      console.log("img",img);
-                     images.push("https://property-ukgv.onrender.com/uploads/"+img.filename)
-             }
-             const imgs = {...images}
-          const data = new imageModel({
-            image:imgs,
-            userId:req.body.userId
-           
-          })
-          await data.save()
-          res.status(201).send({ "status":200, "success":true, "message": "Upload Image Successfully",data })
-        } catch (error) {
-          console.log(error)
-          res.status(401).send({ "status": 401,"success":false, "message": "Unable to Upload" })
-        }
-      
-    } 
-   //basicDetailsAdd..........................................................
+//SellPropertyDetailsAdd..........................................................
 
 module.exports.addBasicDetails = async (req, res) => {
-  const { lookingTo,area, property, userId,phoneNumber}= req.body;
+  const { lookingTo,area, property, userId,phoneNumber,locality,cityName,ownership,priceDetails,furnishing,otherFurnishing,furnishingType,openParking,propertyOnFloor,totalFloors,coveredParking,numberOfbBedrooms,numberOfbathrooms,balconis,otherRooms,availabilityStatus,ageOfProperty}= req.body;
         try {
+          if(req.files == undefined){
           const data = new basicDetailsModel({
             lookingTo: lookingTo,
             area: area,
             property : property,
             userId:userId,
-            phoneNumber:phoneNumber
-    
-          })
-          await data.save()
-          res.status(201).send({ "status":200, "success":true, "message": "Basic Details Add Successfully",data })
-        } catch (error) {
-          console.log(error)
-          res.status(401).send({ "status": 401,"success":false, "message": "Unable to Add" })
-        }
-      
-    } 
-//getBasicDetails.......................................................................
-module.exports.getBasicDetails = async (req, res) => {
-  try{
-    const data = await basicDetailsModel.find()
-  if(data){
-  res.send({ "status": "201","success":true, "message": "get BasicDetails List  Successfully",data })
-  }else{
-    res.status(401).send({"status": "401","success":false, "message": "Unable To Get" })
-  }
-  }catch(error){
-    res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })
-    console.log("error",error);
-}
-}
-//deleteDetails..........................................................
-module.exports.basicDetailsDelete = async (req, res) => {
-  const _id = req.body._id;
-  try{
-    const data = await basicDetailsModel.findOneAndDelete({_id:_id})
-  if(data){
-  res.send({ "status": "201","success":true, "message": "Deleted Details Successfully",data })
-  }else{
-    res.status(401).send({"status": "401","success":false, "message": "Unable To Delete" })
-  }
-  }catch(error){
-    res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })
-    console.log("error",error);
-}
-}
-//AddLocations............................................
-module.exports.addLocation = async (req, res) => {
-  try {
-
-    const{locality,userId,cityName}=req.body;
-    const data = new locationModel({
-      locality:locality,
-      userId:userId,
-      cityName:cityName
-     
-    })
-    await data.save()
-    res.status(201).send({ "status":200, "success":true, "message": "Add Location Successfully",data })
-  } catch (error) {
-    console.log(error)
-    res.status(401).send({ "status": 401,"success":false, "message": "Unable to Add" })
-  }
-
-} 
-//addProfileProperty...................................................................................
-
-//AddLocations............................................
-module.exports.addProfileProperty = async (req, res) => {
-  try {
-
-    const{furnishing,otherFurnishing,furnishingType,openParking,propertyOnFloor,totalFloors,coveredParking,numberOfbBedrooms,userId,numberOfbathrooms,balconis,otherRooms,availabilityStatus,ageOfProperty}=req.body;
-    const data = new propertyProfile({
-      userId:userId,
-      numberOfbBedrooms: numberOfbBedrooms,
-      numberOfbathrooms: numberOfbathrooms,
+            phoneNumber:phoneNumber,
+            locality:locality,
+            cityName:cityName,
+            ownership: ownership,
+            priceDetails:priceDetails,
+            numberOfbBedrooms: numberOfbBedrooms,
+            numberOfbathrooms: numberOfbathrooms,
       balconis:balconis,
       otherRooms: otherRooms,
       availabilityStatus:availabilityStatus,
@@ -121,206 +30,51 @@ module.exports.addProfileProperty = async (req, res) => {
       furnishingType: furnishingType,
       furnishing: furnishing,
       otherFurnishing: otherFurnishing,
-     
-    })
-    await data.save()
-    res.status(201).send({ "status":200, "success":true, "message": "Add propertyProfile Successfully",data })
-  } catch (error) {
-    console.log(error)
-    res.status(401).send({ "status": 401,"success":false, "message": "Unable to Add" })
-  }
+})
+          await data.save()
+         return res.status(201).send({ "status":200, "success":true, "message": "Sell Property  Details Add Successfully",data })
+     }  
+     else{
+                     var images = []
+                      let photos = req.files
+                      console.log("file",photos);
+                      for (const img of photos) {
+                      console.log("img",img);
+                     images.push("https://property-ukgv.onrender.com/uploads/"+img.filename)
+             }
+             const imgs = {...images}
+  const data = new basicDetailsModel({
+    lookingTo: lookingTo,
+    area: area,
+    property : property,
+    userId:userId,
+    phoneNumber:phoneNumber,
+    locality:locality,
+    cityName:cityName,
+    ownership: ownership,
+    priceDetails:priceDetails,
+    numberOfbBedrooms: numberOfbBedrooms,
+    numberOfbathrooms: numberOfbathrooms,
+balconis:balconis,
+otherRooms: otherRooms,
+availabilityStatus:availabilityStatus,
+ageOfProperty: ageOfProperty,
+coveredParking: coveredParking,
+openParking:openParking,
+totalFloors: totalFloors,
+propertyOnFloor:propertyOnFloor,
+furnishingType: furnishingType,
+furnishing: furnishing,
+otherFurnishing: otherFurnishing,
+image:imgs,
+})
+  await data.save()
+ return res.status(201).send({ "status":200, "success":true, "message": "Sell Property Details Add Successfully",data })
 
-} 
-//addPrice.............................................
-module.exports.priceAdd = async (req, res) => {
-  try {
-    const{ownership,userId,pricePerAcres,exppectedPrice}=req.body;
-    const data = new priceModel({
-      ownership: ownership,
-      exppectedPrice: exppectedPrice,
-      pricePerAcres: pricePerAcres,
-      userId:userId,
-    })
-    await data.save()
-    res.status(201).send({ "status":200, "success":true, "message": "Add price Successfully",data })
-  } catch (error) {
-    console.log(error)
-    res.status(401).send({ "status": 401,"success":false, "message": "Unable to Add" })
-  }
-
-} 
-//getUpload...................................................
-module.exports.getImage = async (req, res) => {
-  try{
-    const data = await imageModel.find()
-  if(data){
-  res.send({ "status": "201","success":true, "message": "get  imageList  Successfully",data })
-  }else{
-    res.status(401).send({"status": "401","success":false, "message": "Unable To Get" })
-  }
-  }catch(error){
-    res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })
-    console.log("error",error);
-}
-}
-//getprice.........................................
-
-module.exports.getPrice = async (req, res) => {
-  try{
-    const data = await priceModel.find()
-  if(data){
-  res.send({ "status": "201","success":true, "message": "get  priceList Successfully",data })
-  }else{
-    res.status(401).send({"status": "401","success":false, "message": "Unable To Get" })
-  }
-  }catch(error){
-    res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })
-    console.log("error",error);
-}
-}
-
-//getProfileProperty..........................................
- module.exports.getProfileProperty = async (req, res) => {
-  try{
-    const data = await propertyProfile.find()
-  if(data){
-  res.send({ "status": "201","success":true, "message": "get  priceList  Successfully",data })
-  }else{
-    res.status(401).send({"status": "401","success":false, "message": "Unable To Get" })
-  }
-  }catch(error){
-    res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })
-    console.log("error",error);
-}
-}
-//getLocation.................................................
-module.exports.getLocation = async (req, res) => {
-  try{
-    const data = await locationModel.find()
-  if(data){
-  res.send({ "status": "201","success":true, "message": "get  LocationList Successfully",data })
-  }else{
-    res.status(401).send({"status": "401","success":false, "message": "Unable To Get" })
-  }
-  }catch(error){
-    res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })
-    console.log("error",error);
-}
-}
-//deletePrice................................
-module.exports.priceDelete = async (req, res) => {
-  const _id = req.body._id;
-  try{
-    const data = await priceModel.findOneAndDelete({_id:_id})
-  if(data){
-  res.send({ "status": "201","success":true, "message": "Deleted Price Successfully",data })
-  }else{
-    res.status(401).send({"status": "401","success":false, "message": "Unable To Delete" })
-  }
-  }catch(error){
-    res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })
-    console.log("error",error);
-}
-}
-//deletePhotos....................................
-module.exports.imageDelete = async (req, res) => {
-  const _id = req.body._id;
-  try{
-    const data = await imageModel.findOneAndDelete({_id:_id})
-  if(data){
-  res.send({ "status": "201","success":true, "message": "Deleted Image Successfully",data })
-  }else{
-    res.status(401).send({"status": "401","success":false, "message": "Unable To Delete" })
-  }
-  }catch(error){
-    res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })
-    console.log("error",error);
-}
-}
-
-//deleteLocation....................................
-module.exports.locationDelete = async (req, res) => {
-  const _id = req.body._id;
-  try{
-    const data = await locationModel.findOneAndDelete({_id:_id})
-  if(data){
-  res.send({ "status": "201","success":true, "message": "Deleted location Successfully",data })
-  }else{
-    res.status(401).send({"status": "401","success":false, "message": "Unable To Delete" })
-  }
-  }catch(error){
-    res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })
-    console.log("error",error);
-}
-}
-
-
-//deletePropertyProfile...........................................
-module.exports.propertyFileDelete = async (req, res) => {
-  const _id = req.body._id;
-  try{
-    const data = await propertyProfile.findOneAndDelete({_id:_id})
-  if(data){
-  res.send({ "status": "201","success":true, "message": "Deleted PropertyProfile Successfully",data })
-  }else{
-    res.status(401).send({"status": "401","success":false, "message": "Unable To Delete" })
-  }
-  }catch(error){
-    res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })
-    console.log("error",error);
-}
-}
-//BookProperty.................................
-module.exports.BookProperty = async (req, res) => {
-  try {
-    const{phoneNumber,userId,name,address,city,propertyId}=req.body;
-    const data = new bookModel({
-      phoneNumber: phoneNumber,
-      name: name,
-      propertyId: propertyId,
-      userId:userId,
-      address:address,
-      city:city
-    })
-    await data.save()
-    res.status(201).send({ "status":200, "success":true, "message": "Book Property Successfully",data })
-  } catch (error) {
-    console.log(error)
-    res.status(401).send({ "status": 401,"success":false, "message": "Unable to Add" })
-  }
-
-} 
-
-
-
-//getAllProperty.......................................
-// module.exports.getAllProperty = async (req, res) => {
-//   try{
-    //const data = await Orders.aggregate([{ 
-    //   $lookup: {
-    //    from: 'User',
-    //    localField: 'User_ID',
-    //    foreignField: 'ID',
-    //    as: 'Customer'
-    //   },
-    //   { 
-    //    $unwind: '$Customer'
-    //   },
-    //   $lookup: {
-    //    from: 'Items',
-    //    localField: 'Item_ID',
-    //    foreignField: 'ID',
-    //    as: 'Item'
-    //   },
-    // }])
-    
-//   if(data){
-//   res.send({ "status": "201","success":true, "message": "get  LocationList Successfully",data })
-//   }else{
-//     res.status(401).send({"status": "401","success":false, "message": "Unable To Get" })
-//   }
-//   }catch(error){
-//     res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })
-//     console.log("error",error);
-// }
-// }
+}     
+        } catch (error) {
+          console.log(error)
+          res.status(401).send({ "status": 401,"success":false, "message": "Unable to Add" })
+        }
+      
+    } 
