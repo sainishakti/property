@@ -93,3 +93,17 @@ image:imgs,
         console.log("error",error);
   }
     }
+    module.exports.propertyDelete = async (req, res) => {
+      const {_id} = req.body;
+      try{
+        const data = await basicDetailsModel.findOneAndDelete({_id:_id})
+      if(data){
+      res.send({ "status": "201","success":true, "message": "property Deleted  Successfully",data })
+      }else{
+        res.status(401).send({"status": "401","success":false, "message": "Unable To Delete" })
+      }
+      }catch(error){
+        res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })
+        console.log("error",error);
+      }
+    }

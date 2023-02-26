@@ -21,6 +21,7 @@ module.exports =app=>{
 
 router.post("/AddPropertyDetails",upload.array('file',8),sellController.addBasicDetails)
 router.get("/SellListProperty",sellController.AllProperty)
+router.post("/DeleteSellProperty",sellController.propertyDelete)
 
 
 app.use('/',router)
