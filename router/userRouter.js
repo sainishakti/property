@@ -10,6 +10,7 @@ router.post("/verify",Controller.verifyOtp)
 router.post("/setPassword",checkUserAuth,Controller.userPasswordReset)
 router.get("/userList",Controller.getUserList)
 router.post("/userDelete",Controller.userDelete)
+router.post("/BookProperty",Controller.BookProperty)
 
 
 

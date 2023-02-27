@@ -1,4 +1,5 @@
 const  UserModel =require("../models/userModel.js")
+const  bookModel =require("../models/bookModel.js")
 const  bcrypt =require("bcrypt")
 const  jwt =require("jsonwebtoken")
 const nodemailer = require("nodemailer")
@@ -174,3 +175,24 @@ console.log(otp);
       console.log("error",error);
 }
   }
+
+  //bookProperty....................................
+module.exports.BookProperty = async (req, res) => {
+    const { userId,phoneNumber, address, city,name,propertyId} = req.body
+     try {
+          const data = new bookModel({
+            name: name,
+            phoneNumber: phoneNumber,
+            address: address,
+            city: city,
+            userId: userId,
+            propertyId:propertyId,
+            })
+          await data.save()
+            res.status(201).send({ "status":200, "success":true, "message": "Book Property Successfully",data })
+          } catch (error) {
+            console.log(error)
+            res.status(401).send({ "status": 401,"success":false, "message": "Unable to Property" })
+          }
+        } 
+      
