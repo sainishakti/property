@@ -23,6 +23,7 @@ router.post("/AddPropertyDetails",upload.array('file',8),sellController.addBasic
 router.get("/SellListProperty",sellController.AllProperty)
 router.post("/DeleteSellProperty",sellController.propertyDelete)
 router.post("/CityData",sellController.getCitydata)
+router.get("/propertydataPg",sellController.propertyDataPg)
 
 
 app.use('/',router)
