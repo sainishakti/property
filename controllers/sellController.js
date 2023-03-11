@@ -69,7 +69,7 @@ otherFurnishing: otherFurnishing,
 image:imgs,
 })
   await data.save()
- return res.status(201).send({ "status":200, "success":true, "message": "Sell Property Details Add Successfully",data })
+ return res.status(201).send({ "status":200, "success":true, "message": "Property Details Add Successfully",data })
 
 }     
         } catch (error) {
