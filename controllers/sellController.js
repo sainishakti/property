@@ -127,7 +127,7 @@ image:imgs,
     //find property according pg..................
 module.exports.propertyDataPg = async (req, res) => {
         try{
-          const data = await basicDetailsModel.find({property:"pg"})
+          const data = await basicDetailsModel.find({lookingTo:"Pg"})
         if(data){
         res.send({ "status": "201","success":true, "message": "Get Data Successfully",data })
         }else{
@@ -142,7 +142,7 @@ module.exports.propertyDataPg = async (req, res) => {
     //find property according sell..................
 module.exports.propertyDataSell = async (req, res) => {
   try{
-    const data = await basicDetailsModel.find({property:"sell"})
+    const data = await basicDetailsModel.find({lookingTo:"Sell"})
   if(data){
   res.send({ "status": "201","success":true, "message": "Get Data Successfully",data })
   }else{
@@ -157,7 +157,7 @@ module.exports.propertyDataSell = async (req, res) => {
     module.exports.propertyDataRent = async (req, res) => {
       const property = req.body.property
       try{
-        const data = await basicDetailsModel.find({property:"rent"})
+        const data = await basicDetailsModel.find({lookingTo:"Rent/Lease"})
       if(data){
       res.send({ "status": "201","success":true, "message": "Get Data Successfully",data })
       }else{
