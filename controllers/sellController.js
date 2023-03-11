@@ -127,7 +127,7 @@ image:imgs,
     //find property according pg..................
 module.exports.propertyDataPg = async (req, res) => {
         try{
-          const data = await basicDetailsModel.find({lookingTo:"Pg"})
+          const data = await basicDetailsModel.find({lookingTo:"PG"})
         if(data){
         res.send({ "status": "201","success":true, "message": "Get Data Successfully",data })
         }else{
