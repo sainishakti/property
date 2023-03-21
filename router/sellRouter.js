@@ -26,6 +26,7 @@ router.post("/CityData",sellController.getCitydata)
 router.get("/propertydataPg",sellController.propertyDataPg)
 router.get("/propertydataSell",sellController.propertyDataSell)
 router.get("/propertydataRent",sellController.propertyDataRent)
+router.get("/propertyGet",sellController.getProperty)
 
 
 

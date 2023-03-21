@@ -168,3 +168,19 @@ module.exports.propertyDataSell = async (req, res) => {
         console.log("error",error);
     }
     }
+
+    //getByIdProperty..................................................
+    module.exports.getProperty = async (req, res) => {
+      const _id = req.body._id
+      try{
+        const data = await basicDetailsModel.find({_id:_id})
+      if(data){
+      res.send({ "status": "201","success":true, "message": "Get Data Successfully",data })
+      }else{
+        res.status(401).send({"status": "401","success":false, "message": "Unable To Get" })
+      }
+      }catch(error){
+        res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })
+        console.log("error",error);
+    }
+    }
