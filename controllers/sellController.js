@@ -171,9 +171,9 @@ module.exports.propertyDataSell = async (req, res) => {
 
     //getByIdProperty..................................................
     module.exports.getProperty = async (req, res) => {
-      const _id = req.body._id
+      const {_id} = req.query
       try{
-        const data = await basicDetailsModel.find({_id:_id})
+        const data = await basicDetailsModel.findOne({_id:_id})
       if(data){
       res.send({ "status": "201","success":true, "message": "Get Data Successfully",data })
       }else{
